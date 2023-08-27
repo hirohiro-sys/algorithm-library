@@ -5,8 +5,3 @@
 # ルール
 
 ・1日最低1アルゴリズム進める
-
-# 参考
-
-[Uploading Editorial_All.pdf…]()
-
