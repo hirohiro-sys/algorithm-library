@@ -5,3 +5,7 @@
 # ルール
 
 ・1日最低1アルゴリズム進める
+
+# 参考
+
+editorial/Editorial_All.pdf
