@@ -8,4 +8,5 @@
 
 # 参考
 
-editorial/Editorial_All.pdf
+[Uploading Editorial_All.pdf…]()
+
