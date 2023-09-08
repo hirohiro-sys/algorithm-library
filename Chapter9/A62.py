@@ -1,37 +1,43 @@
 import sys
 
-# 再帰呼び出しの深さの上限を 120000 に設定
+# 再帰の制限を増やす(スタックオーバーフローを防ぐ)
 sys.setrecursionlimit(120000)
 
-# 深さ優先探索を行う関数（pos は現在位置、visited[x] は頂点 x が青色かどうかを表す真偽値）
+# 深さ優先探索のメイン実装
 def dfs(pos, G, visited):
-	visited[pos] = True
-	for i in G[pos]:
-		if visited[i] == False:
-			dfs(i, G, visited)
+    visited[pos] = True
+    for i in G[pos]:
+        if visited[i] == False:
+            dfs(i, G, visited)
+
+
+
 
 # 入力
-N, M = map(int, input().split())
-edges = [ list(map(int, input().split())) for i in range(M) ]
+n,m = map(int,input().split())
+edges = [list(map(int,input().split())) for _ in range(m)]
 
-# 隣接リストの作成
-G = [ list() for i in range(N + 1) ] # G[i] は頂点 i に隣接する頂点のリスト
+# グラフの隣接リストの初期化&構築
+G = [list() for _ in range(n+1)]
 for a, b in edges:
-	G[a].append(b) # 頂点 a に隣接する頂点として b を追加
-	G[b].append(a) # 頂点 b に隣接する頂点として a を追加
+    G[a].append(b)
+    G[b].append(a)
+
+# ノードの訪問状態を管理する配列を初期化
+visited = [False] * (n + 1)
 
 # 深さ優先探索
-visited = [ False ] * (N + 1)
 dfs(1, G, visited)
 
-# 連結かどうかの判定（answer = True のとき連結）
+# 答えを一旦Trueで初期化
 answer = True
-for i in range(1, N + 1):
-	if visited[i] == False:
-		answer = False
 
-# 答えの出力
+# 判定&出力
+for i in range(1,n+1):
+    if visited[i] == False:
+        answer = False
+    
 if answer == True:
-	print("The graph is connected.")
+    print("The graph is connected.")
 else:
-	print("The graph is not connected.")
+    print("The graph is not connected.")
