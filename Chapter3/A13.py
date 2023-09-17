@@ -11,7 +11,7 @@ for i in range(N-1):
     R[i] = 0
   else:
     R[i] = R[i - 1]
-  # 限界まで増やす
+  # 限界まで増やす(この部分は図で見るとわかりやすい)
   while R[i] < N-1 and A[R[i]+1]-A[i] <= K:
     R[i] += 1
 
