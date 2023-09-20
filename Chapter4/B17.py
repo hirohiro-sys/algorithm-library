@@ -31,3 +31,7 @@ Answer.reverse()
 Answer2 = [str(i) for i in Answer]
 print(len(Answer))
 print(" ".join(Answer2))
+
+"""
+動的計画法の復元は動的計画法の基本が土台になる
+"""
