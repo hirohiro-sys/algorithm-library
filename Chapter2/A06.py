@@ -4,6 +4,7 @@ A = [0]
 A.extend(list(map(int,input().split())))
 li = [0]
 for i in range(1,n+1):
+  # li[i-1]を足さないと累積和が作れない
   li.append(A[i]+li[i-1])
 for _ in range(q):
   l,r = map(int,input().split())
