@@ -1,28 +1,19 @@
-# 入力（前半）
-H, W = map(int, input().split())
-X = [ None ] * (H)
-Z = [ [ 0 ] * (W + 1) for i in range(H + 1) ]
-for i in range(H):
-	X[i] = list(map(int, input().split()))
+N,M = map(int,input().split())
+A = [list(map(int,input().split())) for _ in range(N)]
+K = int(input())
+query = [list(map(int,input().split())) for _ in range(K)]
 
-Q = int(input())
-A = [ None ] * Q
-B = [ None ] * Q
-C = [ None ] * Q
-D = [ None ] * Q
-for i in range(Q):
-	A[i], B[i], C[i], D[i] = map(int, input().split())
+prefix_sum = [[0]*(M+1) for _ in range(N+1)]
+for i in range(N):
+    for j in range(M):
+        prefix_sum[i+1][j+1] = prefix_sum[i+1][j] + A[i][j]
+for j in range(M):
+    for i in range(N):
+        prefix_sum[i+1][j+1] = prefix_sum[i][j+1] + prefix_sum[i+1][j+1]
 
-# 横の累積和
-for i in range(1, H+1):
-	for j in range(1, W+1):
-		Z[i][j] = Z[i][j-1] + X[i-1][j-1]
+for i,j,x,y in query:
+    print(prefix_sum[i-1][j-1]+prefix_sum[x][y] - prefix_sum[i-1][y]-prefix_sum[x][j-1])
 
-# 縦方向に累積和
-for j in range(1, W+1):
-	for i in range(1, H+1):
-		Z[i][j] = Z[i-1][j] + Z[i][j]
-
-# 出力(なぜこの式になるのかは解説みる)
-for i in range(Q):
-	print(Z[C[i]][D[i]] + Z[A[i]-1][B[i]-1] - Z[A[i]-1][D[i]] - Z[C[i]][B[i]-1])
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_h
+"""
