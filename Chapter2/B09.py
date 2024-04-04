@@ -3,6 +3,7 @@ imos = [[0]*1503 for _ in range(1503)]
 presum = [[0]*1503 for _ in range(1503)]
 for i in range(N):
   a,b,c,d = map(int,input().split())
+  # 制約みて0からなのか1からなのかで変わる
   imos[a][b] += 1
   imos[c][d] += 1
   imos[a][d] -= 1
