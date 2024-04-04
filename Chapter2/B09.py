@@ -1,32 +1,27 @@
-# 入力
 N = int(input())
-A = [ None ] * N
-B = [ None ] * N
-C = [ None ] * N
-D = [ None ] * N
+imos = [[0]*1503 for _ in range(1503)]
+presum = [[0]*1503 for _ in range(1503)]
 for i in range(N):
-	A[i], B[i], C[i], D[i] = map(int, input().split())
+  a,b,c,d = map(int,input().split())
+  imos[a][b] += 1
+  imos[c][d] += 1
+  imos[a][d] -= 1
+  imos[c][b] -= 1
 
-# 各紙の差
-T = [ [ 0 ] * 1501 for i in range(1501) ]
-for i in range(N):
-	T[A[i]][B[i]] += 1
-	T[A[i]][D[i]] -= 1
-	T[C[i]][B[i]] -= 1
-	T[C[i]][D[i]] += 1
+for i in range(1502):
+  for j in range(1502):
+    presum[i+1][j+1] = presum[i+1][j] + imos[i][j]
+for j in range(1502):
+  for i in range(1502):
+    presum[i+1][j+1] = presum[i+1][j+1] + presum[i][j+1]
 
-# 累積和
-for i in range(0, 1501):
-	for j in range(1, 1501):
-		T[i][j] = T[i][j-1] + T[i][j]
-for i in range(1, 1501):
-	for j in range(0, 1501):
-		T[i][j] = T[i-1][j] + T[i][j]
+ans = 0
+for i in range(1502):
+  for j in range(1502):
+    if presum[i][j] >= 1:
+      ans += 1
+print(ans)
 
-# 面積数えて出力
-Answer = 0
-for i in range(1501):
-	for j in range(1501):
-		if T[i][j] >= 1:
-			Answer += 1
-print(Answer)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ch
+"""
