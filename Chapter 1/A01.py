@@ -1,6 +1,5 @@
 print(int(input())**2)
 
 '''
-N = int(input()) # 入力
-print(N * N) # 出力
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_a
 '''
