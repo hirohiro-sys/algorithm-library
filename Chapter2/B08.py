@@ -1,32 +1,23 @@
-# 入力
-N = int(input())
-X = [ None ] * N
-Y = [ None ] * N
-for i in range(N):
-    X[i],Y[i] = map(int,input().split())
+n = int(input())
+a = [[0]*1500 for _ in range(1500)]
+for i in range(n):
+  x,y = map(int,input().split())
+  x-=1
+  y-=1
+  a[x][y] += 1
+q = int(input())
+query = [list(map(int,input().split())) for _ in range(q)]
 
-Q = int(input())
-A = [ None ] * Q
-B = [ None ] * Q
-C = [ None ] * Q
-D = [ None ] * Q
-for i in range(Q):
-    A[i],B[i],C[i],D[i] = map(int,input().split())
+prefix_sum = [[0]*1501 for _ in range(1501)]
+for i in range(1500):
+  for j in range(1500):
+    prefix_sum[i+1][j+1] = prefix_sum[i+1][j] + a[i][j]
+for j in range(1500):
+  for i in range(1500):
+    prefix_sum[i+1][j+1] = prefix_sum[i][j+1] + prefix_sum[i+1][j+1]
+for a,b,c,d in query:
+  print(prefix_sum[a-1][b-1]+prefix_sum[c][d] - prefix_sum[a-1][d]-prefix_sum[c][b-1])
 
-# 各座標の点の数
-S = [ [ 0 ] * 1501 for i in range(1501) ]
-for i in range(N):
-    S[X[i]][Y[i]] += 1
-
-# 累積和
-T = [ [ 0 ] * 1501 for i in range(1501) ]
-for i in range(1,1501):
-    for j in range(1,1501):
-        T[i][j] = T[i][j-1] + S[i][j]
-for j in range(1,1501):
-    for i in range(1,1501):
-        T[i][j] = T[i-1][j] + T[i][j]
-    
-#出力
-for i in range(Q):
-    print(T[C[i]][D[i]] + T[A[i] - 1][B[i] - 1] - T[A[i] - 1][D[i]] - T[C[i]][B[i] - 1])
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_cg
+"""
