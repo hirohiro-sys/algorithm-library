@@ -1,30 +1,26 @@
-#入力
-N = int(input())
-A = list(map(int,input().split()))
-Q = int(input())
-L = [ None ] * Q
-R = [ None ] * Q
-for i in range(Q):
-    L[i],R[i] = map(int,input().split())
+n = int(input())
+a = list(map(int,input().split()))
+atari = [0] * (n+1)
+hazre = [0] * (n+1)
+for i in range(1,n+1):
+  atari[i] = atari[i-1]
+  if a[i-1]==1:
+    atari[i] += 1
+  hazre[i] = hazre[i-1]
+  if a[i-1]==0:
+    hazre[i] += 1
+q = int(input())
+for i in range(q):
+  a,b = map(int,input().split())
+  count_atari = atari[b]-atari[a-1]
+  count_hazre = hazre[b]-hazre[a-1]
+  if count_atari>count_hazre:
+    print("win")
+  elif count_atari<count_hazre:
+    print("lose")
+  else:
+    print("draw")
 
-#あたりとハズレのそれぞれの累積和求める
-Atari = [0] * (N + 1)
-Hazre = [0] * (N + 1)
-for i in range(1,N+1):
-    Atari[i] = Atari[i - 1]
-    if A[i - 1] == 1:
-        Atari[i] += 1
-    Hazre[i] = Hazre[i - 1]
-    if A[i - 1] == 0:
-        Hazre[i] += 1
-
-#質問に答える   
-for i in range(Q):
-    NumAtari = Atari[R[i]] - Atari[L[i] - 1]
-    NumHazre = Hazre[R[i]] - Hazre[L[i] - 1]
-    if NumAtari>NumHazre:
-        print("win")
-    elif NumAtari==NumHazre:
-        print("draw")
-    else:
-        print("lose")
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ce
+"""
