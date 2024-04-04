@@ -6,5 +6,5 @@ for i in range(a,b+1):
 print("No")
 
 """
-https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ca
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ca　
 """
