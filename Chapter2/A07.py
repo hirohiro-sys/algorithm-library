@@ -9,6 +9,7 @@ ans = 0
 for i in range(N):
   ans += A[i+1]
   print(ans)
+  
 """
 https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_g
 """
