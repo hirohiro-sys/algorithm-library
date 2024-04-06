@@ -1,15 +1,17 @@
-# 入力
-N, M = map(int, input().split())
+N,M = map(int,input().split())
+G = [[] for _ in range(N)]
+for i in range(M):
+  a,b = map(int,input().split())
+  G[a-1].append(b)
+  G[b-1].append(a)
 
-# 友達の数を数える
-friend = [0] * N
-for _ in range(M):
-    A, B = map(int, input().split())
-# インデックスは0から始まるから−１する
-    friend[A-1] += 1
-    friend[B-1] += 1
-
+print(max(range(N), key=lambda x: len(G[x])) + 1)
+"""別の出力の仕方
 mx = max(friend)
 ans = friend.index(mx)
-# インデックスもどす
 print(ans + 1)
+"""
+
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_eh
+"""
