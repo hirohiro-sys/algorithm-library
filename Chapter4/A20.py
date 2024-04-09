@@ -1,26 +1,16 @@
-# 入力
-S = input()
-T = input()
-N = len(S)
-M = len(T)
+s = input()
+t = input()
+dp = [[0]*(len(t)+1) for _ in range(len(s)+1)]
 
-# 動的計画法
-dp = [ [ None ] * (M + 1) for i in range(N + 1) ]
-dp[0][0] = 0
-for i in range(0, N+1):
-	for j in range(0,M+1):
-		if i>=1 and j>=1 and S[i-1]==T[j-1]:
-			dp[i][j] = max(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]+1)
-		elif i>=1 and j>=1:
-			dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-		elif i>=1:
-			dp[i][j] = dp[i-1][j]
-		elif j>=1:
-			dp[i][j] = dp[i][j-1]
+for i in range(1,len(s)+1):
+  for j in range(1,len(t)+1):
+    if s[i-1]==t[j-1]:
+      dp[i][j] = max(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]+1)
+    else:
+      dp[i][j] = max(dp[i-1][j],dp[i][j-1])
+      
+print(dp[len(s)][len(t)])
 
-# 出力
-print(dp[N][M])
-
-'''
-なぜこの式になるかは解説みる
-'''
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_t
+"""
