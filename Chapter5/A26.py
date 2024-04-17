@@ -1,21 +1,12 @@
-# x が素数のとき true を、素数ではないとき false を返す
-def isPrime(N):
-	LIMIT = int(N ** 0.5)
-	for i in range(2, LIMIT + 1):
-		if N % i == 0:
-			return False
-	return True
+t = int(input())
+for i in range(t):
+  n = int(input())
+  ans = "Yes"
+  for j in range(2,int(n**0.5)+1):
+    if n%j==0:
+      ans = "No"
+  print(ans)
 
-# 入力
-Q = int(input())
-X = [ None ] * Q
-for i in range(Q):
-	X[i] = int(input())
-
-# 出力
-for i in range(Q):
-	Answer = isPrime(X[i])
-	if Answer == True:
-		print("Yes")
-	else:
-		print("No")
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_z
+"""
