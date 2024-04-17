@@ -1,16 +1,15 @@
-# 入力
-N = int(input())
+n = int(input())
 
-# エラトステネスのふるい
-# 整数 x が消されている場合に限り Deleted[x]=true
-Deleted = [ False ] * 1000009
-LIMIT = int(N ** 0.5)
-for i in range(2, LIMIT+1):
-	if Deleted[i] == False:
-		for j in range(i*2, N+1, i):
-			Deleted[j] = True
+a = [0] * (n+1)
+for i in range(2,int(n**0.5)+1):
+  if a[i]==0:
+    for j in range(i**2,n+1,i):
+      a[j] = 1
+    
+for i in range(2,n+1):
+  if a[i]==0:
+    print(i)
 
-# 答えを出力
-for i in range(2, N+1):
-	if Deleted[i] == False:
-		print(i)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_cy
+"""
