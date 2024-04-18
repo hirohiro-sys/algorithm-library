@@ -1,17 +1,23 @@
+import math
+a,b = map(int,input().split())
+print(math.gcd(a,b))
+
+
+"""ユークリッド互除法
 def GCD(A, B):
 	while A >= 1 and B >= 1:
 		if A >= B:
-			A = A % B # A の値を変更する場合
+			A = A % B 
 		else:
-			B = B % A # B の値を変更する場合
+			B = B % A 
 	if A >= 1:
 		return A
 	return B
 
-# 入力
 A, B = map(int, input().split())
 print(GCD(A, B))
+"""
 
 """
-ユークリッド互助法
+https://atcoder.jp/contests/tessoku-book/tasks/math_and_algorithm_o
 """
