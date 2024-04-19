@@ -1,25 +1,16 @@
-# 入力
-N = int(input())
-T = [ None ] * N
-A = [ None ] * N
-for i in range(N):
-	T[i], A[i] = input().split()
-	A[i] = int(A[i])
+n = int(input())
+ans = 0
+for i in range(n):
+    a = input().split()
+    if a[0]=="+": ans += int(a[1])
+    if a[0]=="-": ans -= int(a[1])
+    if a[0]=="*": ans *= int(a[1])
 
-# 出力（Answer は現在の黒板の数）
-Answer = 0
-for i in range(N):
-	if T[i] == '+':
-		Answer += A[i]
-	if T[i] == '-':
-		Answer -= A[i]
-	if T[i] == '*':
-		Answer *= A[i]
+    if ans<0: 
+       ans+=10000
+    ans %= 10000
+    print(ans)
 
-	# 引き算で答えが 0 未満になった場合
-	if Answer < 0:
-		Answer += 10000
-
-	# ここで余りをとっている！
-	Answer %= 10000
-	print(Answer)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ab
+"""
