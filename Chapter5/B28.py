@@ -1,16 +1,12 @@
-# 入力
-N = int(input())
+n = int(input())
+dp = [0] * (10**7+1)
+dp[1] = 1
+dp[2] = 1
+for i in range(3,n+1):
+  dp[i] = dp[i-1] + dp[i-2]
+  dp[i] %=10**9+7
+print(dp[n])
 
-# フィボナッチ数の計算
-a = [ None ] * (N + 1)
-a[1] = 1
-a[2] = 1
-for i in range(3, N+1):
-	a[i] = (a[i-1] + a[i-2]) % 1000000007
-
-# 出力
-print(a[N])
-
-'''
-フィボナッチ数列は、0と1から始まり、次の数が直前の2つの数の和である数列のこと
-'''
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/math_and_algorithm_ap
+"""
