@@ -1,11 +1,11 @@
-# 入力
-S = input()
+s = input()
+stack = []
+for i in range(len(s)):
+  if s[i]=="(":
+    stack.append(i+1)
+  else:
+    print(stack.pop(),i+1)
 
-# 左から順番に見ていく
-# 文字列は 0 文字目から始まることに注意
-Stack = []
-for i in range(len(S)):
-	if S[i] == '(':
-		Stack.append(i + 1)
-	if S[i] == ')':
-		print(Stack.pop(), i + 1)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_dx
+"""
