@@ -1,15 +1,14 @@
-from collections import deque
+n = int(input())
+stack = []
+for i in range(n):
+  a = input().split()
+  if a[0]=="1":
+    stack.append(a[1])
+  elif a[0]=="2":
+    print(stack[-1])
+  else:
+    stack.pop()
 
-# 入力
-Q = int(input()) # クエリ数
-queries = [ input().split() for i in range(Q) ] # クエリの情報（各要素は ["1", 題名を表す文字列] or ["2"] or ["3"]）
-
-# クエリの処理
-S = deque()
-for q in queries:
-	if q[0] == "1":
-		S.append(q[1])
-	if q[0] == "2":
-		print(S[-1])
-	if q[0] == "3":
-		S.pop()
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ay
+"""
