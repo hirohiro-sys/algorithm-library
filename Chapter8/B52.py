@@ -1,23 +1,23 @@
 from collections import deque
 
+n,x = map(int,input().split())
+s = list(input())
+x -= 1
 
-# 入力
-N, X = map(int, input().split())
-X -= 1
-A = list(input())
+queue = deque([x])
+s[x] = "@"
+while queue:
+    pos = queue.popleft()
+    # インデックスは0~n-1のため以下の条件文になる
+    if 0<=pos-1 and s[pos-1]==".":
+        s[pos-1]="@"
+        queue.append(pos-1)
+    if pos+1<n and s[pos+1]==".":
+        s[pos+1]="@"
+        queue.append(pos+1)
 
-# シミュレーション
-Q = deque([X])
-Q.append(X)
-A[X] = '@'
-while Q:
-	pos = Q.popleft()
-	if pos - 1 >= 0 and A[pos - 1] == '.':
-		A[pos - 1] = '@'
-		Q.append(pos - 1)
-	if pos + 1 < N and A[pos + 1] == '.':
-		A[pos + 1] = '@'
-		Q.append(pos + 1)
+print("".join(s))
 
-# 出力
-print("".join(A))
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_dy
+"""
