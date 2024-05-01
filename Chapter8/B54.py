@@ -1,15 +1,11 @@
+a = [int(input()) for _ in range(int(input()))]
 Map = {}
- 
-# 入力
-N = int(input())
-A = [int(input()) for _ in range(N)]
+ans = 0
+for i in a:
+  ans += Map.get(i,0)
+  Map[i] = Map.get(i,0) + 1
+print(ans)
 
-# 答えを求める
-Answer = 0
-for a in A:
-	# dict.get にはキーが存在しなかった場合のデフォルト値を設定できる
-	Answer += Map.get(a, 0)
-	Map[a] = Map.get(a, 0) + 1
-
-# 出力
-print(Answer)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ea
+"""
