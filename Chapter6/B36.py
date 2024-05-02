@@ -1,15 +1,16 @@
-# 入力
-N, K = map(int, input().split())
-S = input()
+n,k = map(int,input().split())
+s = input()
 
-# ON となっているものの個数を数える
-numON = 0
-for i in range(N):
-	if S[i] == '1':
-		numON += 1
+count_on = 0
+for i in range(n):
+  if s[i]=="1":
+    count_on+=1
 
-# 答えを出力
-if numON%2 == K%2:
-	print("Yes")
+if count_on%2==k%2:
+  print("Yes")
 else:
-	print("No")
+  print("No")
+
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_di
+"""
