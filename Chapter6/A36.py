@@ -1,8 +1,9 @@
-# 入力
-N, K = map(int, input().split())
-
-# 出力
-if K >= 2*N-2 and K%2 == 0:
-	print("Yes")
+n,k = map(int,input().split())
+if k>=2*n-2 and k%2==0:
+  print("Yes")
 else:
-	print("No")
+  print("No")
+
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_aj
+"""
