@@ -1,31 +1,27 @@
-import bisect
-import sys
+n,k = map(int,input().split())
+a = list(map(int,input().split()))
+b = list(map(int,input().split()))
+c = list(map(int,input().split()))
+d = list(map(int,input().split()))
 
-# 入力
-N,K = map(int,input().split())
-A = list(map(int,input().split()))
-B = list(map(int,input().split()))
-C = list(map(int,input().split()))
-D = list(map(int,input().split()))
+p = []
+for i in a:
+  for j in b:
+    p.append(i+j)
+q = []
+for i in c:
+  for j in d:
+    q.append(i+j)
 
-# それぞれ配列作成
-P = []
-for i in range(N):
-    for j in range(N):
-        P.append(A[i]+B[j])
-    
-Q = []
-for i in range(N):
-    for j in range(N):
-        Q.append(C[i]+D[j])
+p = set(p)
+q = set(q)
 
-Q.sort()
-
-# 二分探索&出力
-for i in range(len(P)):
-    pos1 = bisect.bisect_left(Q,K-P[i])
-    if pos1<N*N and Q[pos1]==K-P[i]:
-        print("Yes")
-        sys.exit(0)
-
+for i in p:
+  if k-i in q:
+    print("Yes")
+    exit()
 print("No")
+
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_n
+"""
