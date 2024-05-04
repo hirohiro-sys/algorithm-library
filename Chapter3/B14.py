@@ -1,39 +1,27 @@
-import bisect
-import sys
+n,k = map(int,input().split())
+a = list(map(int,input().split()))
 
-# 「配列 A にあるカードからいくつか選んだときの合計」として考えられるものを列挙
-# ビット全探索を使う
-def Enumerate(A):
-	SumList = []
-	for i in range(2 ** len(A)):
-		sum = 0 # 現在の合計値
-		for j in range(len(A)):
-			wari = (2 ** j)
-			if (i // wari) % 2 == 1:
-				sum += A[j]
-		SumList.append(sum)
-	return SumList
+n = n//2
+a_before = a[:n]
+a_after = a[n:]
 
-# 入力
-N, K = map(int, input().split())
-A = list(map(int, input().split()))
+b_before = set([0])
+for i in a_before:
+  for j in list(b_before):
+    b_before.add(i+j)
+    
+b_after = set([0])
+for i in a_after:
+  for j in list(b_after):
+    b_after.add(i+j)
 
-# カードを半分ずつに分ける
-L1 = A[0:(N//2)]
-L2 = A[(N//2):N]
-
-# それぞれについて、「あり得るカードの合計」を全列挙
-Sum1 = Enumerate(L1)
-Sum2 = Enumerate(L2)
-Sum1.sort()
-Sum2.sort()
-
-# 二分探索で Sum1[i] + Sum2[j] = K となるものが存在するかを見つける
-for i in range(len(Sum1)):
-	pos = bisect.bisect_left(Sum2, K-Sum1[i])
-	if pos<len(Sum2) and Sum2[pos]==K-Sum1[i]:
-		print("Yes")
-		sys.exit(0)
-
-# 見つからなかった場合
+for i in b_before:
+  if k-i in b_after:
+    print("Yes")
+    exit()
+  
 print("No")
+
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_cm
+"""
