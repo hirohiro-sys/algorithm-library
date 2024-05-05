@@ -1,17 +1,14 @@
-def f(x):
-  return x**3 + x
+n=int(input())
 
-N = int(input())
+l,r=0,10**9
+while l+0.001<r:
+    x=(l+r)/2
+    if x**3+x>=n:
+        r=x
+    else:
+        l=x
+print(l)
 
-Left = 0.0
-Right = 100.0
-for i in range(20):
-  Mid = (Left + Right) / 2
-  val = f(Mid)
-  
-  if val > N:
-    Right = Mid
-  else:
-    Left = Mid
-
-print(Mid)
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ck
+"""
