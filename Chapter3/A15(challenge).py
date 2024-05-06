@@ -1,19 +1,13 @@
 import bisect
 
-N = int(input())
-A = list(map(int,input().split()))
+n = int(input())
+a = list(map(int,input().split()))
 
-T = list(set(A))
-T.sort()
+b = sorted(list(set(a)))
+for i in a:
+  ans = bisect.bisect_left(b,i)
+  print(ans+1,end=" ")
 
-B = [ None ] * N
-for i in range(N):
-    B[i] = bisect.bisect_left(T,A[i])
-    B[i] += 1
-
-Answer = [str(i) for i in B]
-print(" ".join(Answer))
-
-'''
-座標圧縮
-'''
+"""
+https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_o
+"""
