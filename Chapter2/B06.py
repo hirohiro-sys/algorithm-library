@@ -1,26 +1,30 @@
-n = int(input())
-a = list(map(int,input().split()))
-atari = [0] * (n+1)
-hazre = [0] * (n+1)
-for i in range(1,n+1):
+N = int(input())
+A = list(map(int,input().split()))
+
+atari = [0] * (N+1)
+hazure = [0] * (N+1)
+for i in range(1,N+1):
+  # 直前の値から+1をするため
   atari[i] = atari[i-1]
-  if a[i-1]==1:
+  if A[i-1]==1:
     atari[i] += 1
-  hazre[i] = hazre[i-1]
-  if a[i-1]==0:
-    hazre[i] += 1
-q = int(input())
-for i in range(q):
-  a,b = map(int,input().split())
-  count_atari = atari[b]-atari[a-1]
-  count_hazre = hazre[b]-hazre[a-1]
-  if count_atari>count_hazre:
+  # 直前の値から+1をするため
+  hazure[i] = hazure[i-1]
+  if A[i-1]==0:
+    hazure[i] += 1
+    
+Q = int(input())
+for _ in range(Q):
+  L,R = map(int,input().split())
+  atari_cnt = atari[R]-atari[L-1]
+  hazure_cnt = hazure[R]-hazure[L-1]
+  if atari_cnt > hazure_cnt:
     print("win")
-  elif count_atari<count_hazre:
+  elif atari_cnt < hazure_cnt:
     print("lose")
   else:
     print("draw")
 
-"""
+"""問題URL
 https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ce
 """
