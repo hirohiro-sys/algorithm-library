@@ -20,6 +20,6 @@ for j in range(W):
 for i in range(H):
   print(*presum_array[i+1][1:W+1])
 
-"""
+"""問題URL
 https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_i
 """
