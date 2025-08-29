@@ -23,6 +23,6 @@ for i in range(1502):
       ans += 1
 print(ans)
 
-"""
+"""問題URL
 https://atcoder.jp/contests/tessoku-book/tasks/tessoku_book_ch
 """
